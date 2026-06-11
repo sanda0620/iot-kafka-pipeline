@@ -6,16 +6,18 @@ live metrics in Grafana — all containerised with Docker Compose.
 
 ## Architecture
 
+```
 IoT Sensors (simulated)
-│
-▼
+       │
+       ▼
 Python Producer  →  Apache Kafka (topic: iot-sensors, 3 partitions)
-│
-▼
-Python Consumer (validates + processes)
-│
-▼
-PostgreSQL  →  Grafana (live dashboard, 5s refresh)
+                              │
+                              ▼
+                    Python Consumer (validates + processes)
+                              │
+                              ▼
+                         PostgreSQL  →  Grafana (live dashboard, 5s refresh)
+```
 
 ## Tech Stack
 
@@ -146,7 +148,7 @@ WHERE timestamp >= $__timeFrom() AND timestamp <= $__timeTo()
 
 ## Project Structure
 
-
+```
 iot-kafka-pipeline/
 ├── src/
 │   ├── models.py        # Sensor data model and random reading generator
@@ -155,6 +157,7 @@ iot-kafka-pipeline/
 ├── docker-compose.yml   # Full infrastructure (Kafka, Zookeeper, PostgreSQL, Grafana)
 ├── requirements.txt     # Python dependencies
 └── README.md
+```
 
 ## Key Concepts Demonstrated
 
